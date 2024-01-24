@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# populate note taking framework v3.0
+# temp
 # 2024.01.24, by @zachleach
+# populate note taking framework v3.0
 
 YEAR=2024 BASE="2023-12-31" i=0
 for week in ${YEAR}-{01..52}; do
