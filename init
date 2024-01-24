@@ -1,14 +1,12 @@
 #!/bin/bash
 
-# temp2
+# init
 # 2024.01.24, by @zachleach
-# create each week file 
-# create each day file
-# populate a top level file with the each week name
-# populate each week file with each day of the week
+# populate taking framework v3.0
 
-BASE="2023-12-31" i=0
-for week in 2024-{01..52}; do
+YEAR=2024 BASE="2023-12-31" i=0
+for week in ${YEAR}-{01..52}; do
+	echo ${week} >> ${YEAR}.md
 	echo ${week} && touch ${week}.md
 	for _ in {1..7}; do
 		date=$(date -d "${BASE} +${i} days" '+%Y-%m-%d')
