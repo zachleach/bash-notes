@@ -7,7 +7,7 @@ note_dirs=(
 	'swe'
 )
 
-# usage: $ weeks [optional note directory]
+# usage: $ year [optional note directory]
 function year() {
 	dir=""
 	for d in ${note_dirs[@]}; do 
