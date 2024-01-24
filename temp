@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# temp
+# 2024.01.24, by @zachleach
+# print each week and each day in that week, starting from a specific date (BASE)
+
+BASE="2023-12-31" i=0
+for week in 2024-{01..52}; do
+	echo $week
+	for _ in {1..7}; do
+		date=$(date -d "${BASE} +${i} days" '+%Y-%m-%d')
+		echo $date
+		((i++))
+	done
+done
