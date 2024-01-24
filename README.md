@@ -1,18 +1,12 @@
-
-
-
-
-
-
-Add the following commands to your ~/.bashrc
 ```bash
+default_dir='~/notes'
 
 # usage: $ weeks [optional note directory]
 function weeks() {
 	dir=""
 	case $1 in
 		"")
-			dir='~/notes'
+			dir=${default_dir}
 			;;
 		*)
 			echo 'invalid note directory'
@@ -31,7 +25,7 @@ function notes() {
 	dir=""
 	case $1 in
 		"")
-			dir='~/notes'
+			dir=${default_dir}
 			;;
 		*)
 			echo 'invalid note directory'
@@ -53,7 +47,7 @@ function note() {
 	dir=""
 	case $1 in
 		"")
-			dir='~/notes'
+			dir=${default_dir}
 			;;
 		*)
 			echo 'invalid note directory'
@@ -65,7 +59,4 @@ function note() {
 	date=$(date +%Y-%m-%d)
 	cd ${dir} && vi ${date}.md
 }
-
-function 
-
-
+```
