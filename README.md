@@ -4,10 +4,8 @@ note_dirs=(
 )
 
 function year() {
-	dir=""
-	for d in ${note_dirs[@]}; do 
-		[[ ${1} == ${d} ]] && dir=${d}
-	done
+	dir="" 
+	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
 
 	week_num=$(($(date +%U) + 1))
 	year_num=$(date +%Y)
@@ -15,10 +13,8 @@ function year() {
 }
 
 function notes() {
-	dir=""
-	for d in ${note_dirs[@]}; do 
-		[[ ${1} == ${d} ]] && dir=${d}
-	done
+	dir="" 
+	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
 
 	week_num=$(($(date +%U) + 1))
 	week_num=$(printf "%02d" ${week_num})
@@ -28,10 +24,8 @@ function notes() {
 }
 
 function note() {
-	dir=""
-	for d in ${note_dirs[@]}; do 
-		[[ ${1} == ${d} ]] && dir=${d}
-	done
+	dir="" 
+	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
 
 	date=$(date +%Y-%m-%d)
 	cd ~/notes/${dir} && vi ${date}.md
