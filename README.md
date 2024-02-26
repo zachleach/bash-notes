@@ -3,11 +3,17 @@ note_dirs=(
 	'mtg'
 )
 
+
 function year() {
 	dir="" 
 	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
 
-	week_num=$(($(date +%U) + 1))
+	# 2024-02-25 look here if error (specifically the + 2)
+	
+	week_num=$(date +%U)		# week number [00..53]
+	week_num=${week_num#0}		# strip the leading zero for non-octal arithmetic
+	((week_num++))				
+	week_num=$(printf "%02d" ${week_num})	
 	year_num=$(date +%Y)
 	cd ~/notes/${dir} && vi +${week_num} ${year_num}.md
 }
@@ -16,8 +22,10 @@ function notes() {
 	dir="" 
 	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
 
-	week_num=$(($(date +%U) + 1))
-	week_num=$(printf "%02d" ${week_num})
+	week_num=$(date +%U)		# week number [00..53]
+	week_num=${week_num#0}		# strip the leading zero for non-octal arithmetic
+	((week_num++))				
+	week_num=$(printf "%02d" ${week_num})	
 	week_str=$(date +%Y)-${week_num}
 	day_num=$((($(date +%u) + 1) % 8))
 	cd ~/notes/${dir} && vi +${day_num} ${week_str}.md
