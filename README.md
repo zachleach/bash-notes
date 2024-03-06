@@ -1,14 +1,15 @@
 ```bash
 note_dirs=(
-	'mtg'
+	'mtg' 
+	'cf'
+	'cs4348'
+	'cs3354'
 )
 
-
 function year() {
-	dir="" 
+	dir="" base="$(basename $(pwd))"
+	[[ " ${note_dirs[@]} " =~ " ${base} " ]] && dir="${base}"
 	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
-
-	# 2024-02-25 look here if error (specifically the + 2)
 	
 	week_num=$(date +%U)		# week number [00..53]
 	week_num=${week_num#0}		# strip the leading zero for non-octal arithmetic
@@ -19,7 +20,8 @@ function year() {
 }
 
 function notes() {
-	dir="" 
+	dir="" base="$(basename $(pwd))"
+	[[ " ${note_dirs[@]} " =~ " ${base} " ]] && dir="${base}"
 	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
 
 	week_num=$(date +%U)		# week number [00..53]
@@ -32,10 +34,12 @@ function notes() {
 }
 
 function note() {
-	dir="" 
+	dir="" base="$(basename $(pwd))"
+	[[ " ${note_dirs[@]} " =~ " ${base} " ]] && dir="${base}"
 	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
 
 	date=$(date +%Y-%m-%d)
 	cd ~/notes/${dir} && vi ${date}.md
 }
+
 ```
