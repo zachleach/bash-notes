@@ -1,3 +1,4 @@
+```sh
 declare -a note_dirs
 mapfile -t note_dirs < ~/.notes_file
 
@@ -40,7 +41,7 @@ function n() {
 	dir="" base="$(basename $(pwd))"
 	[[ " ${note_dirs[@]} " =~ " ${base} " ]] && dir="${base}"
 	[[ " ${note_dirs[@]} " =~ " ${1} " ]] && dir=${1}
-
+```
 	date=$(date +%Y-%m-%d)
 	cd ~/notes/${dir} && vi ${date}.md
 }
