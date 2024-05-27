@@ -2,6 +2,15 @@
 declare -a note_dirs
 mapfile -t note_dirs < ~/.notes_file
 
+function initnotes() {
+	dir="${1}" 
+	git clone https://github.com/zachleach/bash-notes "${1}"
+	rm 'README.md'
+	./init
+	echo "${1}" >> ~/.notes_file
+	source ~/.bashrc
+}
+
 function notes() {
 	dir="" base="$(basename $(pwd))"
 	[[ " ${note_dirs[@]} " =~ " ${base} " ]] && dir="${base}"
@@ -24,7 +33,7 @@ function note() {
 	week_num=${week_num#0}		# strip the leading zero for non-octal arithmetic
 	((week_num++))	
 
-	o_arr=(0 2 3 4 5 6 7 1)		# vi_offset = arr[date +%u] (for odd weeks)
+	o_arr=(0 2 3 4 5 6 7 1)			# vi_offset = arr[date +%u] (for odd weeks)
 	e_arr=(0 9 10 11 12 13 14 8)	# vi_offset = arr[date +%u] (for even weeks)
 	vi_offset=${o_arr[$(date +%u)]}
 	if [[ $((${week_num} % 2)) -eq 0 ]]; then	# if even week, 2 things:
@@ -46,4 +55,3 @@ function n() {
 	cd ~/notes/${dir} && vi ${date}.md
 }
 ```
-
