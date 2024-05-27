@@ -24,7 +24,7 @@ function note() {
 	week_num=${week_num#0}		# strip the leading zero for non-octal arithmetic
 	((week_num++))	
 
-	o_arr=(0 2 3 4 5 6 7 1)			# vi_offset = arr[date +%u] (for odd weeks)
+	o_arr=(0 2 3 4 5 6 7 1)		# vi_offset = arr[date +%u] (for odd weeks)
 	e_arr=(0 9 10 11 12 13 14 8)	# vi_offset = arr[date +%u] (for even weeks)
 	vi_offset=${o_arr[$(date +%u)]}
 	if [[ $((${week_num} % 2)) -eq 0 ]]; then	# if even week, 2 things:
