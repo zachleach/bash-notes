@@ -1,9 +1,5 @@
-```bash
-note_dirs=(
-	'reading'
-	'therapy'
-	'relationships'
-)
+declare -a note_dirs
+mapfile -t note_dirs < ~/.notes_file
 
 function notes() {
 	dir="" base="$(basename $(pwd))"
@@ -28,7 +24,7 @@ function note() {
 	((week_num++))	
 
 	o_arr=(0 2 3 4 5 6 7 1)			# vi_offset = arr[date +%u] (for odd weeks)
-	e_arr=(0 9 10 11 12 13 14 8)		# vi_offset = arr[date +%u] (for even weeks)
+	e_arr=(0 9 10 11 12 13 14 8)	# vi_offset = arr[date +%u] (for even weeks)
 	vi_offset=${o_arr[$(date +%u)]}
 	if [[ $((${week_num} % 2)) -eq 0 ]]; then	# if even week, 2 things:
 		vi_offset=${e_arr[$(date +%u)]}	
@@ -48,4 +44,3 @@ function n() {
 	date=$(date +%Y-%m-%d)
 	cd ~/notes/${dir} && vi ${date}.md
 }
-```
