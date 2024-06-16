@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# init (v4.0)
-# 2024.05.23, by @zachleach
+# init
+# 2024.06.16, by @zachleach
 
 YEAR=2024 BASE="2023-12-31" i=0
-for week in ${YEAR}-{01..52..2}; do
+for week in ${YEAR}-{01..52}; do
 	echo ${week} >> ${YEAR}.md
 	echo ${week} && touch ${week}.md
-	for _ in {1..14}; do
+	for _ in {1..7}; do
 		date=$(date -d "${BASE} +${i} days" '+%Y-%m-%d')
 		echo ${date} >> ${week}.md
 		echo ${date} && touch ${date}.md
