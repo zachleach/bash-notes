@@ -1,16 +1,17 @@
 #!/bin/bash
 
-# init (v4.0)
-# 2024.07.06, by @zachleach
+# init 
+# 2024.09.22, by @zachleach
 
-YEAR=2024 BASE="2023-12-31" i=0
-for week in ${YEAR}-{01..52..2}; do
-	echo ${week} >> ${YEAR}.md
-	echo ${week} && touch ${week}.md
-	for _ in {1..14}; do
-		date=$(date -d "${BASE} +${i} days" '+%Y-%m-%d')
-		echo ${date} >> ${week}.md
-		echo ${date} && touch ${date}.md
-		((i++))
+YEAR='2024' BASE='2023-12-31'
+for w in {01..358..7}; do
+	monday=$(date -d "${BASE} + ${w} days" +%Y-%m-%d)
+	week_file=${YEAR}-$(date -d ${monday} +%V)
+	echo ${week_file} >> ${YEAR}.md
+	echo ${week_file} && touch ${week_file}.md
+	for d in {0..6}; do
+		day=$(date -d "${monday} +${d} days" +%Y-%m-%d)
+		echo ${day} >> ${week_file}.md
+		echo ${day} && touch ${day}.md
 	done
 done
