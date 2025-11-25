@@ -1,6 +1,6 @@
 # Vim-Based Note System
 
-A hierarchical note-taking system using plain markdown files and Vim's `gf` hotkey. Navigate through yearly overview, weekly planning, and daily journaling with predictable line numbers and date-based filenames.
+A hierarchical note-taking system using plain markdown files and Vim's `gf` hotkey. Navigate through yearly overview, weekly planning, and daily journaling with predictable line numbers and date-based filenames. Design influenced by prolific writer Cal Newport's quarterly planning system.
 
 ## How It Works
 
